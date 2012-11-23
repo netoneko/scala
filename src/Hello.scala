@@ -25,5 +25,22 @@ object Hello {
     val square = realPower(_: Int, 2)
 
     println(square(7))
+
+    def capitalizeAll(args: String*) = {
+      args.map { arg =>
+        arg.capitalize
+      }
+    }
+
+    println(capitalizeAll("Hello", "Yeah"))
+
+
+    val curriedRealPow = (realPower _).curried
+
+    List(2, 3).foldLeft(curriedRealPow)({ (func, arg) =>
+      val result = func(arg)
+      println(result)
+      result
+    })
   }
 }
