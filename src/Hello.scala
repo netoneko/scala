@@ -1,5 +1,7 @@
 object Hello {
   def main(args: Array[String]) {
-    println("Hello, world!")
+    val addOne = (x: Int) => x + 1
+
+    println(addOne(2))
   }
 }
