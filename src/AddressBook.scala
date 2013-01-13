@@ -8,14 +8,13 @@ object AddressBook {
     tokens.head match {
       case "list" => {
         entries.map {
-          entry =>
-            Array(entry._1, "\t<", entry._2, ">").mkString
+          entry => "%s\t<%s>".format(entry._1, entry._2)
         }.mkString("\n")
       }
       case "add" => {
         val name = input.dropRight(1).mkString(" ")
         val email = input.last
-        entries.put(name, email)
+        entries += (name -> email)
         "Entry added: %s <%s>".format(name, email)
       }
       case "del" => {
