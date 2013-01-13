@@ -1,5 +1,4 @@
 import collection.mutable
-import scala.text
 
 object AddressBook {
   val entries = mutable.HashMap[String, String]()
