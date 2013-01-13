@@ -3,42 +3,40 @@ import collection.mutable
 object AddressBook {
   val entries = mutable.HashMap[String, String]()
 
-  def handleInput(input: String): String = {
-    val tokens = input.split(" ")
+  def handleInput(line: String): String = {
+    val tokens = line.split(" ")
+    var input = tokens.drop(1)
 
     val command = tokens.head match {
       case "list" => {
-        input: (Array[String]) =>
-          entries.map {
-            entry =>
-              Array(entry._1, "\t<", entry._2, ">").mkString
-          }.mkString("\n")
+        entries.map {
+          entry =>
+            Array(entry._1, "\t<", entry._2, ">").mkString
+        }.mkString("\n")
       }
       case "add" => {
-        input: (Array[String]) =>
-          val name = input.dropRight(1).mkString(" ")
-          val email = input.last
-          entries.put(name, email)
-          "Entry added: %s <%s>".format(name, email)
+        val name = input.dropRight(1).mkString(" ")
+        val email = input.last
+        entries.put(name, email)
+        "Entry added: %s <%s>".format(name, email)
       }
       case "del" => {
-        input: (Array[String]) =>
-          val key = input.mkString(" ")
-          val value = entries.remove(key)
-          if (value != None)
-            "Entry removed: %s <%s>".format(key, value.get)
-          else
-            "Entry not found"
+        val key = input.mkString(" ")
+        val value = entries.remove(key)
+        if (value != None)
+          "Entry removed: %s <%s>".format(key, value.get)
+        else
+          "Entry not found"
       }
       case "^D" => {
-        input: (Array[String]) => "" + System.exit(0)
+        "" + System.exit(0)
       }
       case _ => {
-        input: (Array[String]) => "Could not parse command: " + input.mkString(" ")
+        "Could not parse command: " + input.mkString(" ")
       }
     }
 
-    command(tokens.drop(1))
+    command
   }
 
   def main(args: Array[String]) {
