@@ -35,12 +35,12 @@ object Hello {
     println(capitalizeAll("Hello", "Yeah"))
 
 
-    val curriedRealPow = (realPower _).curried
-
-    List(2, 3).foldLeft(curriedRealPow)({ (func, arg) =>
-      val result = func(arg)
-      println(result)
-      result
-    })
+//    val curriedRealPow = (realPower _).curried
+//
+//    List(2, 3).foldLeft(curriedRealPow)({ (func, arg) =>
+//      val result = func(arg)
+//      println(result)
+//      result
+//    })
   }
 }
