@@ -1,7 +1,5 @@
-import collection.mutable
-
 object AddressBook {
-  val entries = mutable.HashMap[String, String]()
+  val entries = collection.mutable.HashMap[String, String]()
 
   def handleInput(line: String): String = {
     val tokens = line.split(" ")
