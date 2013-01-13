@@ -5,9 +5,9 @@ object AddressBook {
 
   def handleInput(line: String): String = {
     val tokens = line.split(" ")
-    var input = tokens.drop(1)
+    val input = tokens.drop(1)
 
-    val command = tokens.head match {
+    tokens.head match {
       case "list" => {
         entries.map {
           entry =>
@@ -35,8 +35,6 @@ object AddressBook {
         "Could not parse command: " + input.mkString(" ")
       }
     }
-
-    command
   }
 
   def main(args: Array[String]) {
