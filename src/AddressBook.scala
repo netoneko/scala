@@ -1,5 +1,5 @@
 object AddressBook {
-  val entries = collection.mutable.HashMap[String, String]()
+  val entries = collection.mutable.Map[String, String]()
 
   def handleInput(line: String): String = {
     val tokens = line.split(" ")
@@ -7,9 +7,7 @@ object AddressBook {
 
     tokens.head match {
       case "list" => {
-        entries.map {
-          entry => "%s\t<%s>".format(entry._1, entry._2)
-        }.mkString("\n")
+        entries.map(x => "%s\t<%s>".format(x._1, x._2)).mkString("\n")
       }
       case "add" => {
         val name = input.dropRight(1).mkString(" ")
@@ -26,7 +24,7 @@ object AddressBook {
           "Entry not found"
       }
       case "^D" => {
-        "" + System.exit(0)
+        System.exit(0).toString
       }
       case _ => {
         "Could not parse command: " + input.mkString(" ")
